@@ -1,0 +1,4 @@
+ts,scope,status,canonical,reason_code,reason,owner,evidence
+2026-11-14T08:12:36+00:00,t08,HOLD,HOLD,ESCALATIONS_PENDING_REVIEW,7/10 request còn escalation chưa có người duyệt; chỉ thực thi xoá cho request GO,Nguyễn Hoài Nam (Lead / Data Owner),out\poc\actions.csv;out\poc\audit_log.jsonl;out\poc\review_queue.csv;out\poc\request_decisions.csv;out\poc\selfcheck.json
+2026-11-14T08:56:44+00:00,t08,GO,GO,DELETION_PLAN_APPROVED,Mọi exception đã được người duyệt; legal hold được giữ và hẹn xoá khi hết hold,Nguyễn Hoài Nam (Lead / Data Owner),out\poc\actions.csv;out\poc\audit_log.jsonl;out\poc\review_queue.csv;out\poc\request_decisions.csv;out\poc\selfcheck.json
+2026-11-14T09:09:00+00:00,t08,GO,GO,DELETION_PLAN_APPROVED,Mọi exception đã được người duyệt; legal hold được giữ và hẹn xoá khi hết hold,Nguyễn Hoài Nam (Lead / Data Owner),out\poc\actions.csv;out\poc\audit_log.jsonl;out\poc\review_queue.csv;out\poc\request_decisions.csv;out\poc\selfcheck.json
