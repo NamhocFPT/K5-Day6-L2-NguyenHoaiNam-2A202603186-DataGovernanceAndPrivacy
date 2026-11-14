@@ -1,3 +1,13 @@
+> **Bài nộp — G-2A202603186 · Nguyễn Hoài Nam · Track T08 (Retention & Delete Request Simulator)**
+> Repo: https://github.com/NamhocFPT/K5-Day6-L2-NguyenHoaiNam-2A202603186-DataGovernanceAndPrivacy ·
+> Tag demo: `demo-180m` · Tag nộp cuối: `final-24h` · Report: [`reports/group_report.md`](reports/group_report.md)
+>
+> ```powershell
+> .venv\Scripts\python -m src.main --track t08 --pipeline src.t08_baseline --output out/baseline --run-name baseline --offline --seed 42
+> .venv\Scripts\python -m src.main --config configs/lab.yaml --track t08 --output out/poc --run-name poc --offline --seed 42
+> .venv\Scripts\python -m pytest -q
+> ```
+
 # Day 06 · Data Lab · Field-to-Release PoC (AI20K · Data Track)
 
 Starter repo cho bài lab **Data Pipeline, Privacy & Production PoC**: 14 challenge (T01–T14), một contract chung.

@@ -1,2 +1,2 @@
 member,git_author_name,git_email,role,modules_files,commit_shas,evidence_note,presenter
-Nguyễn Hoài Nam,,,Lead / Integrator / Core algorithm / QA / Review + report (solo),configs/lab.yaml; src/pipeline.py; src/t08_baseline.py; tests/test_t08.py; reports/; .gitattributes,,Nhóm 1 người,yes
+Nguyễn Hoài Nam,Nguyen Hoai Nam,hoainguyennam10@gmail.com,Lead / Integrator / Core algorithm / QA / Review + report (solo),configs/lab.yaml; src/pipeline.py; src/t08_baseline.py; tests/test_t08.py; reports/; .gitattributes,87a0720,Nhóm 1 người; commit đầu là toàn bộ PoC T08,yes

@@ -13,8 +13,8 @@
 | Challenge | T08 · Retention & Delete Request Simulator |
 | Thành viên + vai trò | 1. Nguyễn Hoài Nam — Lead/Integrator, Data, Core algorithm, QA/metric, Review + report (làm một mình) |
 | Git URL | https://github.com/NamhocFPT/K5-Day6-L2-NguyenHoaiNam-2A202603186-DataGovernanceAndPrivacy |
-| Tag `demo-180m` (commit) | ____ (điền sau `git tag`) |
-| Tag `final-24h` (commit) | ____ |
+| Tag `demo-180m` (commit) | `87a0720` (2026-11-14 16:15 +07) |
+| Tag `final-24h` (commit) | commit cuối khi nộp (xem `git show final-24h`) |
 | Deadline (giờ VN) | ____ |
 
 ## 01 · Problem statement
@@ -122,7 +122,7 @@ py -3.13 -m venv .venv
 
 - Tests của nhóm (`tests/test_t08.py`, 5 test): E2E + idempotency (chạy 2 lần cùng `actions.csv`), precedence unit test, review thiếu reviewer → exit 2, legal hold không bị override, input bị sửa → exit 2.
 - `pytest -q`: 0 failed (các test cần gt/ bị skip).
-- Máy: Windows 11 (10.0.26200), Intel64 Family 6 Model 154, Python 3.13.17 · git sha: ____
+- Máy: Windows 11 (10.0.26200), Intel64 Family 6 Model 154, Python 3.13.17 · git sha: `87a0720` (demo), commit cuối = tag `final-24h`
 
 ## 09 · Limitations & ethics
 
@@ -135,7 +135,7 @@ py -3.13 -m venv .venv
 
 | Học viên | Git author/email | Module / vai trò | Commit SHA / diff chứng minh | Trình bày? |
 |---|---|---|---|---|
-| Nguyễn Hoài Nam | ____ | Toàn bộ: config, pipeline, baseline, tests, review, report | ____ | có |
+| Nguyễn Hoài Nam | Nguyen Hoai Nam <hoainguyennam10@gmail.com> | Toàn bộ: config, pipeline, baseline, tests, review, report | `87a0720` (pipeline/baseline/tests/report) + commit hoàn thiện report | có |
 
 ## 11 · References
 
@@ -149,8 +149,8 @@ py -3.13 -m venv .venv
 
 **Bảng 3 · Checklist chốt khi nộp**
 
-- [ ] Link repo và tag cuối cùng trong README; input mẫu không chứa PII thật.
+- [x] Link repo và tag cuối cùng trong README; input mẫu không chứa PII thật.
 - [x] Đúng 1 lệnh run, 1 lệnh evaluate, 1 lệnh tests; không cần download khi chạy.
 - [x] Có baseline/PoC (proxy), ≥1 failure case, reviewer evidence, decision log.
 - [x] Có license/source provenance, seed, offline environment, N.
-- [ ] Mỗi thành viên có ≥1 commit thực chất và được nêu minh bạch trong bảng trên.
+- [x] Mỗi thành viên có ≥1 commit thực chất và được nêu minh bạch trong bảng trên.
