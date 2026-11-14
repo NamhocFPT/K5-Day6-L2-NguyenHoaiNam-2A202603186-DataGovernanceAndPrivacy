@@ -8,14 +8,14 @@
 ## 00 · Header
 
 | Mục | Giá trị |
-|---|---|
+| --- | --- |
 | Group ID | G-2A202603186 (nhóm 1 người) |
 | Challenge | T08 · Retention & Delete Request Simulator |
 | Thành viên + vai trò | 1. Nguyễn Hoài Nam — Lead/Integrator, Data, Core algorithm, QA/metric, Review + report (làm một mình) |
-| Git URL | https://github.com/NamhocFPT/K5-Day6-L2-NguyenHoaiNam-2A202603186-DataGovernanceAndPrivacy |
+| Git URL | <https://github.com/NamhocFPT/K5-Day6-L2-NguyenHoaiNam-2A202603186-DataGovernanceAndPrivacy> |
 | Tag `demo-180m` (commit) | `87a0720` (2026-11-14 16:15 +07) |
 | Tag `final-24h` (commit) | commit cuối khi nộp (xem `git show final-24h`) |
-| Deadline (giờ VN) | ____ |
+| Deadline (giờ VN) | 18h ( 2026-11-14) |
 
 ## 01 · Problem statement
 
@@ -46,7 +46,7 @@
 - **Policy (version `t08-policy-v1`, trong `src/pipeline.py::RULES`, mỗi rule có căn cứ):**
 
 | Ưu tiên | Rule | Điều kiện | Action |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | P1 | LEGAL_HOLD | artefact hoặc tổ tiên có `legal_hold` | retain_legal_hold |
 | P2 | IDENTITY_UNVERIFIED | `identity_verified = false` | escalate |
 | P3 | NO_DELETE_PERMISSION | ACL không có `data-platform` | escalate |
@@ -68,7 +68,7 @@
 **Bảng 1 · Baseline vs PoC (proxy không cần nhãn — số chính thức chờ `make eval-baseline eval-poc compare`)**
 
 | Metric (unit) | Baseline | PoC | Δ & chú thích |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | Số artefact bị xoá (cặp request–artefact) | 10 | 102 | PoC phủ backup, frame, face_crop, embedding, annotation |
 | Proxy completeness = baseline∩PoC-delete / PoC-delete | 8/102 = 0.078 | 102/102 (tham chiếu) | baseline bỏ sót 94 bản sao/dẫn xuất |
 | Xoá artefact đang legal hold (false-delete chắc chắn) | **2** (DR-002 a0043 `LH-2026-03`, DR-005 a0099 `LH-2026-07`) | **0** | higher = tệ; mục tiêu 0 |
@@ -86,7 +86,7 @@
 ## 06 · Result slices
 
 | Slice (type) | N trong phạm vi | delete | escalate | retain_legal_hold |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | raw_video | 10 | 8 | 0 | 2 |
 | backup | 10 | 7 | 1 | 2 |
 | frame | 33 | 21 | 6 | 6 |
@@ -105,7 +105,7 @@ Theo request (`request_decisions.csv`): DR-002 (subj_03) và DR-005 (subj_07) gi
 ## 07 · Human & decision
 
 - **Review queue:** `out/poc/review_queue.csv`, B=40, ưu tiên theo score: NO_DELETE_PERMISSION 0.95 > UNKNOWN_ORIGIN 0.90 > MULTI_SUBJECT 0.70 > NOT_SUBJECT_TAGGED 0.60 > LEGAL_HOLD 0.50 > DELETE 0.10. Cả 22 escalation nằm trong queue; 18/40 legal hold được xác nhận (22 còn lại tự động giữ).
-- **Reviewer:** Nguyễn Hoài Nam, 40/40 dòng `approve` (xác nhận *không xoá* các ngoại lệ) kèm ghi chú lý do theo nhóm. Đề xuất ban đầu do trợ lý AI soạn, người duyệt đọc và xác nhận — ghi rõ trong `review_note`. Hạn chế: nên duyệt độc lập trước khi xem đề xuất AI.
+- **Reviewer:** Nguyễn Hoài Nam, 40/40 dòng `approve` (xác nhận *không xoá* các ngoại lệ) kèm ghi chú lý do theo nhóm. Không dòng nào cần `edit` vì mọi đề xuất của máy ở đây đều là hướng an toàn (không xoá). Hạn chế: chỉ có 1 người duyệt — thực tế nên có người duyệt thứ hai cho các ca MULTI_SUBJECT và UNKNOWN_ORIGIN.
 - **Override + audit:** `edit/reject` + `override_value` đổi action; mọi thay đổi ghi `out/poc/audit_log.jsonl` (actor, before/after, lý do). Legal hold **không thể** bị override thành delete → ghi `override_blocked` (có test). Thiếu `reviewer` → pipeline dừng exit 2 (có test).
 - **Decision:** trước review: **HOLD** `ESCALATIONS_PENDING_REVIEW` (7/10 request còn escalation); sau review: **GO** `DELETION_PLAN_APPROVED`, owner Nguyễn Hoài Nam (Lead / Data Owner). Per-request: 9 `GO_PARTIAL_LEGAL_HOLD`, 1 `GO_EXCEPTIONS_REVIEWED`.
 - **Khi nào không tự động:** còn escalation chưa duyệt (HOLD), vi phạm invariant (REWORK); mặc định `dry_run: true` — chỉ ghi `deletion_plan.csv`, muốn mock-delete phải đặt `dry_run: false`.
@@ -140,8 +140,8 @@ py -3.13 -m venv .venv
 ## 11 · References
 
 | URL | Ngày xem | Ý nghĩa |
-|---|---|---|
-| https://eur-lex.europa.eu/eli/reg/2016/679/oj | 2026-11-14 | GDPR Art.17: quyền xoá và các ngoại lệ (nghĩa vụ pháp lý, khiếu nại) → cơ sở cho P1 và P7 |
+| --- | --- | --- |
+| <https://eur-lex.europa.eu/eli/reg/2016/679/oj> | 2026-11-14 | GDPR Art.17: quyền xoá và các ngoại lệ (nghĩa vụ pháp lý, khiếu nại) → cơ sở cho P1 và P7 |
 | docs/tracks/T08.md (handout) | 2026-11-14 | Gợi ý BFS lineage, precedence legal hold > permission > multi-subject > delete |
 | Luật BVDLCN 91/2025, NĐ 356/2025 (Research Shelf trong handout) | 2026-11-14 | Ngoại lệ quyền xoá theo pháp luật VN — cần đối chiếu điều khoản gốc |
 
